@@ -1,7 +1,9 @@
-import { keyMetrics } from '../../data/productionData';
+import { useProductionDataContext } from '../../context/ProductionDataContext';
 import { MetricCard } from './MetricCard';
 
 export function KeyMetricsPanel() {
+  const { metrics } = useProductionDataContext();
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <MetricCard
@@ -16,8 +18,8 @@ export function KeyMetricsPanel() {
           </svg>
         }
         label="Proven Reserves"
-        value={`${keyMetrics.reserves.amount}B bbl`}
-        subValue={`${keyMetrics.reserves.globalShare}% of global`}
+        value={`${metrics.reserves.amount}B bbl`}
+        subValue={`${metrics.reserves.globalShare}% of global`}
       />
 
       <MetricCard
@@ -32,8 +34,8 @@ export function KeyMetricsPanel() {
           </svg>
         }
         label="Current Production"
-        value={`${keyMetrics.production.current}M bpd`}
-        trend={{ value: keyMetrics.production.change, isPositive: false }}
+        value={`${metrics.production.current}M bpd`}
+        trend={{ value: metrics.production.change, isPositive: false }}
         subValue="from peak"
       />
 
@@ -49,8 +51,8 @@ export function KeyMetricsPanel() {
           </svg>
         }
         label="Export Volume"
-        value={`${keyMetrics.exports.volume}M bpd`}
-        subValue={keyMetrics.exports.mainDestinations.join(', ')}
+        value={`${metrics.exports.volume}M bpd`}
+        subValue={metrics.exports.mainDestinations.join(', ')}
       />
 
       <MetricCard
@@ -64,9 +66,9 @@ export function KeyMetricsPanel() {
             />
           </svg>
         }
-        label={`${keyMetrics.crudePrice.benchmark} Crude`}
-        value={`$${keyMetrics.crudePrice.current}/bbl`}
-        trend={{ value: keyMetrics.crudePrice.change, isPositive: true }}
+        label={`${metrics.crudePrice.benchmark} Crude`}
+        value={`$${metrics.crudePrice.current}/bbl`}
+        trend={{ value: metrics.crudePrice.change, isPositive: true }}
       />
     </div>
   );

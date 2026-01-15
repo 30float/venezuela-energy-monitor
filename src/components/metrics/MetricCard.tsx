@@ -13,19 +13,19 @@ interface MetricCardProps {
 
 export function MetricCard({ icon, label, value, subValue, trend }: MetricCardProps) {
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 flex items-start gap-4">
-      <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center text-primary-600 shrink-0">
+    <div className="bg-white rounded-xl border border-neutral-200 p-4 flex items-start gap-4">
+      <div className="w-12 h-12 bg-neutral-100 rounded-lg flex items-center justify-center text-neutral-600 shrink-0">
         {icon}
       </div>
       <div className="min-w-0">
-        <p className="text-sm text-slate-500 truncate">{label}</p>
-        <p className="text-2xl font-bold text-slate-800">{value}</p>
+        <p className="text-sm text-neutral-500 truncate">{label}</p>
+        <p className="text-2xl font-semibold text-neutral-900">{value}</p>
         <div className="flex items-center gap-2 mt-1">
-          {subValue && <span className="text-sm text-slate-600">{subValue}</span>}
+          {subValue && <span className="text-sm text-neutral-500">{subValue}</span>}
           {trend && (
             <span
               className={`text-sm font-medium ${
-                trend.isPositive ? 'text-green-600' : 'text-red-600'
+                trend.isPositive ? 'text-neutral-900' : 'text-neutral-400'
               }`}
             >
               {trend.value >= 0 ? '+' : ''}

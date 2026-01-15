@@ -1,73 +1,74 @@
-# React + TypeScript + Vite
+# Venezuela Energy Monitor
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A dashboard for tracking Venezuela's oil production and energy infrastructure using live data from the U.S. Energy Information Administration (EIA) API.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Live oil production data from EIA API
+- Historical production trends (1998-present)
+- Refinery status tracking
+- Industry news feed
+- Responsive, minimal black/white UI
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + TypeScript
+- Vite
+- Tailwind CSS 4
+- Recharts
+- Vercel Edge Functions (API proxy)
 
-## Expanding the ESLint configuration
+## Development
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# Install dependencies
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Run development server (uses fallback data)
+npm run dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Run with live API (requires Vercel CLI)
+npm run dev:api
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Deployment
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Vercel (Recommended)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Push to GitHub
+2. Import project in Vercel
+3. Add environment variable in Vercel dashboard:
+   - `EIA_API_KEY`: Your EIA API key
+
+The API key is stored server-side only and never exposed to the browser.
+
+### Get an EIA API Key
+
+1. Visit https://www.eia.gov/opendata/register.php
+2. Register for a free API key
+3. Add it to your Vercel environment variables
+
+## Environment Variables
+
+| Variable | Location | Description |
+|----------|----------|-------------|
+| `EIA_API_KEY` | Server-side only | EIA API key for fetching production data |
+
+## Project Structure
+
 ```
+src/
+  components/     # React components
+  context/        # React context providers
+  data/           # Static fallback data
+  hooks/          # Custom React hooks
+  services/       # API service layer
+  types/          # TypeScript types
+  utils/          # Utility functions
+api/
+  production.ts   # Vercel Edge Function (API proxy)
+```
+
+## License
+
+MIT

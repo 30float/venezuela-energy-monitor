@@ -6,7 +6,7 @@ import { NewsFeed } from './components/news/NewsFeed';
 
 function App() {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-neutral-50">
       <Header />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -30,7 +30,7 @@ function App() {
         </div>
 
         {/* Footer */}
-        <footer className="mt-12 pt-6 border-t border-slate-200 text-center text-sm text-slate-500">
+        <footer className="mt-12 pt-6 border-t border-neutral-200 text-center text-sm text-neutral-500">
           <p>Venezuela Energy Infrastructure Monitor</p>
           <p className="mt-1">
             Data sources: OPEC, EIA, PDVSA, Reuters, Bloomberg, S&P Global
