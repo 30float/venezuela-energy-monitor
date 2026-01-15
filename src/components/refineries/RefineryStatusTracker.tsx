@@ -9,10 +9,10 @@ export function RefineryStatusTracker() {
 
   return (
     <Card title="Refinery Status">
-      <div className="mb-4 p-3 bg-slate-50 rounded-lg">
+      <div className="mb-4 p-3 bg-neutral-50 rounded-lg">
         <div className="flex justify-between items-center">
-          <span className="text-sm text-slate-600">Total Refining Output</span>
-          <span className="font-semibold text-slate-800">
+          <span className="text-sm text-neutral-600">Total Refining Output</span>
+          <span className="font-semibold text-neutral-900">
             {totalOutput}K / {totalCapacity}K bbl/d ({overallUtilization}%)
           </span>
         </div>
@@ -24,7 +24,7 @@ export function RefineryStatusTracker() {
         ))}
       </div>
 
-      <p className="text-xs text-slate-500 mt-4">
+      <p className="text-xs text-neutral-500 mt-4">
         Source: PDVSA operational reports, industry estimates
       </p>
     </Card>

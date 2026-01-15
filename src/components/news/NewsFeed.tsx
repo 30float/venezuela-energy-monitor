@@ -21,13 +21,13 @@ export function NewsFeed() {
         {filteredNews.length > 0 ? (
           filteredNews.map((news) => <NewsCard key={news.id} news={news} />)
         ) : (
-          <div className="py-8 text-center text-slate-500">
+          <div className="py-8 text-center text-neutral-500">
             No news available for this category.
           </div>
         )}
       </div>
 
-      <p className="text-xs text-slate-500 mt-4 pt-4 border-t border-slate-100">
+      <p className="text-xs text-neutral-500 mt-4 pt-4 border-t border-neutral-100">
         News sources: Reuters, Bloomberg, S&P Global, Argus Media
       </p>
     </Card>

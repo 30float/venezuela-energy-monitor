@@ -22,8 +22,8 @@ export function NewsFilters({ activeCategory, onCategoryChange }: NewsFiltersPro
           onClick={() => onCategoryChange(cat.value)}
           className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
             activeCategory === cat.value
-              ? 'bg-primary-500 text-white'
-              : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              ? 'bg-neutral-900 text-white'
+              : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
           }`}
         >
           {cat.label}

@@ -1,10 +1,5 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-
-const comparisonData = [
-  { name: 'Peak (1998)', value: 3500, color: '#94a3b8' },
-  { name: 'Pre-2013', value: 2000, color: '#64748b' },
-  { name: 'Current', value: 1000, color: '#f97316' },
-];
+import { useProductionDataContext } from '../../context/ProductionDataContext';
 
 interface CustomTooltipProps {
   active?: boolean;
@@ -15,9 +10,9 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
   if (!active || !payload?.length) return null;
 
   return (
-    <div className="bg-white p-3 shadow-lg rounded-lg border border-slate-200">
-      <p className="text-slate-600 text-sm font-medium">{payload[0].payload.name}</p>
-      <p className="text-slate-800 font-bold text-lg">
+    <div className="bg-white p-3 shadow-lg rounded-lg border border-neutral-200">
+      <p className="text-neutral-500 text-sm font-medium">{payload[0].payload.name}</p>
+      <p className="text-neutral-900 font-semibold text-lg">
         {(payload[0].value / 1000).toFixed(1)}M bbl/day
       </p>
     </div>
@@ -25,6 +20,16 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
 }
 
 export function HistoricalComparison() {
+  const { summary } = useProductionDataContext();
+
+  const comparisonData = [
+    { name: 'Peak', value: summary.peak, color: '#a3a3a3' },
+    { name: 'Pre-2013', value: summary.preMaduro, color: '#525252' },
+    { name: 'Current', value: summary.current, color: '#171717' },
+  ];
+
+  const maxValue = Math.max(summary.peak, 4000);
+
   return (
     <div className="h-48 w-full">
       <ResponsiveContainer width="100%" height="100%">
@@ -32,16 +37,16 @@ export function HistoricalComparison() {
           <XAxis
             type="number"
             tickFormatter={(v) => `${(v / 1000).toFixed(1)}M`}
-            tick={{ fill: '#64748b', fontSize: 12 }}
-            axisLine={{ stroke: '#e2e8f0' }}
-            domain={[0, 4000]}
+            tick={{ fill: '#737373', fontSize: 12 }}
+            axisLine={{ stroke: '#e5e5e5' }}
+            domain={[0, maxValue]}
           />
           <YAxis
             type="category"
             dataKey="name"
             width={80}
-            tick={{ fill: '#64748b', fontSize: 12 }}
-            axisLine={{ stroke: '#e2e8f0' }}
+            tick={{ fill: '#737373', fontSize: 12 }}
+            axisLine={{ stroke: '#e5e5e5' }}
           />
           <Tooltip content={<CustomTooltip />} />
           <Bar dataKey="value" radius={[0, 4, 4, 0]} animationDuration={800}>
